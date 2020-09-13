@@ -24,7 +24,10 @@ class MyFlexiableAppBar extends StatelessWidget {
             ),
             Container(
               child: Text("1344.0",
-                  style: TextStyle(color: Colors.amber, fontSize: 30.0)),
+                  style: TextStyle(
+                      color: Colors.amber,
+                      fontSize: 30.0,
+                      fontFamily: 'Touche')),
             )
           ],
         ),

@@ -170,6 +170,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.11"
+  timeline_widget:
+    dependency: "direct main"
+    description:
+      name: timeline_widget
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.6"
   typed_data:
     dependency: transitive
     description:
@@ -192,4 +199,4 @@ packages:
     source: hosted
     version: "3.5.0"
 sdks:
-  dart: ">=2.4.0 <3.0.0"
+  dart: ">=2.7.0 <3.0.0"
