@@ -46,7 +46,8 @@ flutter:
     - family: Pacifico
       fonts:
         - asset: assets/Pacifico-Regular.ttf
-
+  assets:
+    - assets/images/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
