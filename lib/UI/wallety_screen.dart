@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:wallety/UI/flexiableAppBar.dart';
 import 'package:wallety/UI/CardDetails.dart';
+import 'package:wallety/UI/InputDialog.dart';
 import 'dart:io' show Platform;
 
 import 'package:wallety/UI/flexiableAppBar.dart';
@@ -21,6 +22,7 @@ class _WalletyScreenState extends State<WalletyScreen> {
 
   @override
   Widget build(BuildContext context) {
+    InputDialog inputDialog = new InputDialog();
     return Scaffold(
       body: CustomScrollView(slivers: <Widget>[
         //TODO implement SliverList
@@ -66,6 +68,7 @@ class _WalletyScreenState extends State<WalletyScreen> {
               icon: Icon(Icons.add_circle, color: Colors.white),
               iconSize: 50.0,
               onPressed: () {
+                inputDialog.createInputDialog(context, 'Income');
                 print("Incremented");
               }),
           IconButton(

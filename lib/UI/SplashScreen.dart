@@ -1,3 +1,5 @@
+import 'dart:io' as io;
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:splashscreen/splashscreen.dart';
@@ -12,7 +14,8 @@ class SplashScreenV extends StatefulWidget {
 class _SplashScreenVState extends State<SplashScreenV> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    // TODO: implement reading data to fetch existing wallet, if no wallet exist create new one.
+
     return new SplashScreen(
       loaderColor: Colors.white,
       backgroundColor: Constants.primaryColorHEX,
