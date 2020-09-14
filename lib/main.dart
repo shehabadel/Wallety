@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wallety/UI/SplashScreen.dart';
 import 'package:wallety/UI/wallety_screen.dart';
 import 'constants.dart';
 
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Constants.primaryColor,
       ),
-      home: WalletyScreen(),
+      home: SplashScreenV(),
     );
   }
 }
