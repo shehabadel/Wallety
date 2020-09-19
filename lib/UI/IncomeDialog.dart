@@ -53,8 +53,7 @@ class IncomeDialog extends StatelessWidget {
                     //setting controller and inputValue as the input value from the user in order to show
                     //it on the textField, and saving it for later use
                     //converting value from string to double
-                    _AmountController.text = value;
-                    inputAmount = double.parse(_AmountController.text);
+                    // _AmountController.text = value;
 
                     print(inputAmount);
                   },
@@ -99,6 +98,8 @@ class IncomeDialog extends StatelessWidget {
                     children: <Widget>[
                       FlatButton(
                         onPressed: () {
+                          inputAmount = double.parse(_AmountController.text);
+
                           CardDetails incomeCard = new CardDetails(
                               inputDesc, inputDate, inputAmount.toString());
                           Provider.of<CardList>(context, listen: false)

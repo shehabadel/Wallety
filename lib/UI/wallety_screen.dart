@@ -39,17 +39,10 @@ class WalletyScreen extends StatelessWidget {
 
           //must be updated with the new changes in the cardList
           //must show the new incomes and expenses added, from the CardDetails widget
-          SliverList(delegate:
-              SliverChildBuilderDelegate((BuildContext context, int index) {
-            return Consumer<CardList>(builder: (context, cardList, child) {
-              return ListView.builder(
-                itemCount: cardList.getCardList().length,
-                itemBuilder: (context, index) {
-                  return cardList.getCardList().elementAt(index);
-                },
-              );
-            });
-          }))
+          SliverList(
+              delegate: SliverChildBuilderDelegate((context, index) {
+            return cardList.getCardList()[index];
+          }, childCount: cardList.getCardList().length))
         ]),
         floatingActionButton: FabCircularMenu(
           fabOpenIcon: Icon(
