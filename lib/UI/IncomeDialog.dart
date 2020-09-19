@@ -1,16 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:wallety/Logic/CardList.dart';
 import 'package:wallety/UI/CardDetails.dart';
 import 'package:wallety/constants.dart';
 import 'package:wallety/UI/wallety_screen.dart';
+import 'package:provider/provider.dart';
 
-class IncomeDialog extends StatefulWidget {
-  @override
-  _IncomeDialogState createState() => _IncomeDialogState();
-}
-
-class _IncomeDialogState extends State<IncomeDialog> {
+class IncomeDialog extends StatelessWidget {
   //In order to move to the next TextField
   FocusScopeNode _focusScopeNode = FocusScopeNode();
 
@@ -23,8 +20,11 @@ class _IncomeDialogState extends State<IncomeDialog> {
   String inputDesc = '';
   double inputAmount = 0.0;
 
+  var Consumer1;
+
   @override
   Widget build(BuildContext context) {
+    //var cardListInfo = Provider.of<CardList>(context);
     return Dialog(
       elevation: 10.0,
       shape: RoundedRectangleBorder(
@@ -39,17 +39,23 @@ class _IncomeDialogState extends State<IncomeDialog> {
             node: _focusScopeNode,
             child: Column(
               children: <Widget>[
-                Text("Income"),
+                Padding(
+                  padding: const EdgeInsets.only(right: 10.0),
+                  child: Text(
+                    "Income",
+                    style: TextStyle(
+                        fontSize: 20.0, color: Constants.primaryColor),
+                  ),
+                ),
                 TextField(
                   textInputAction: TextInputAction.done,
                   onSubmitted: (value) {
                     //setting controller and inputValue as the input value from the user in order to show
                     //it on the textField, and saving it for later use
                     //converting value from string to double
-                    setState(() {
-                      _AmountController.text = value;
-                      inputAmount = double.parse(_AmountController.text);
-                    });
+                    _AmountController.text = value;
+                    inputAmount = double.parse(_AmountController.text);
+
                     print(inputAmount);
                   },
                   controller: _AmountController,
@@ -62,10 +68,9 @@ class _IncomeDialogState extends State<IncomeDialog> {
                   textInputAction: TextInputAction.done,
                   decoration: InputDecoration(hintText: "Enter income's title"),
                   onSubmitted: (Description) {
-                    setState(() {
-                      _DescController.text = Description;
-                      inputDesc = _DescController.text;
-                    });
+                    _DescController.text = Description;
+                    inputDesc = _DescController.text;
+
                     print(inputDesc);
                   },
                 ),
@@ -81,29 +86,35 @@ class _IncomeDialogState extends State<IncomeDialog> {
                         .then((date) {
                       _DateController.text =
                           "${date.year}-${date.month}-${date.day}";
-                      setState(() {
-                        inputDate = _DateController.text;
-                      });
+                      inputDate = _DateController.text;
                       print(inputDate);
                     });
                   },
                   decoration: InputDecoration(hintText: "Enter income's date"),
                 )),
-                SizedBox(height: 15.0),
+                SizedBox(height: 35.0),
                 Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       FlatButton(
                         onPressed: () {
-                          setState(() {
-                            print(
-                                "Value:$inputAmount#, Desc:$inputDesc*, Date:$inputDate@ ");
-                            CardDetails incomeCard = new CardDetails(
-                                inputDesc, inputDate, inputAmount.toString());
-                          });
+                          CardDetails incomeCard = new CardDetails(
+                              inputDesc, inputDate, inputAmount.toString());
+                          Provider.of<CardList>(context, listen: false)
+                              .addCard(incomeCard);
+                          Provider.of<CardList>(context, listen: false)
+                              .incrementValue(inputAmount);
+                          print(
+                              "Value:$inputAmount#, Desc:$inputDesc*, Date:$inputDate@ ");
+                          print(Provider.of<CardList>(context, listen: false)
+                              .getCardList()
+                              .toString());
                         },
-                        child: Text("Add"),
+                        child: Text(
+                          "Add",
+                          style: TextStyle(color: Colors.white),
+                        ),
                         color: Constants.primaryColorHEX,
                       ),
                       CloseButton()
@@ -113,6 +124,26 @@ class _IncomeDialogState extends State<IncomeDialog> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class FlatButtonAdd extends StatelessWidget {
+  var inputAmount, inputDesc, inputDate;
+  FlatButtonAdd(this.inputAmount, this.inputDesc, this.inputDate);
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return FlatButton(
+      onPressed: () {
+        var cardListInfo = Provider.of<CardList>(context);
+        print("Value:$inputAmount#, Desc:$inputDesc*, Date:$inputDate@ ");
+        CardDetails incomeCard =
+            new CardDetails(inputDesc, inputDate, inputAmount.toString());
+        cardListInfo.addCard(incomeCard);
+      },
+      child: Text("Add"),
+      color: Constants.primaryColorHEX,
     );
   }
 }

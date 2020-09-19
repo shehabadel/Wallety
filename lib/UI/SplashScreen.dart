@@ -2,7 +2,9 @@ import 'dart:io' as io;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:splashscreen/splashscreen.dart';
+import 'package:wallety/Logic/CardList.dart';
 import 'package:wallety/UI/wallety_screen.dart';
 import 'package:wallety/constants.dart';
 
