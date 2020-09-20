@@ -92,6 +92,12 @@ class ExpenseDialog extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       FlatButton(
+                        shape: RoundedRectangleBorder(
+                            side: BorderSide(
+                                color: Colors.blue,
+                                width: 1,
+                                style: BorderStyle.solid),
+                            borderRadius: BorderRadius.circular(10)),
                         onPressed: () {
                           //Providing the textField controller's data into some
                           //temporary variables which are used in creating a new

@@ -14,7 +14,6 @@ class WalletyScreen extends StatelessWidget {
     return Consumer<CardList>(builder: (_, cardList, __) {
       return Scaffold(
         body: CustomScrollView(slivers: <Widget>[
-          //TODO implement SliverList
           SliverAppBar(
             shape: ContinuousRectangleBorder(
                 borderRadius: BorderRadius.only(

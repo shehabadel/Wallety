@@ -5,15 +5,17 @@ import 'package:wallety/UI/CardDetails.dart';
 //The main model provider
 
 class CardList with ChangeNotifier {
-  double currentValue = 300.0;
+  double currentValue = 4500.0;
 
   List<Widget> cardList = [
-    CardDetails("Macdonalds", "14-12-2040 3:00PM", "400", "Expense"),
-    CardDetails("Gas", "14-12-2040 2:00PM", "100", "Expense"),
-    CardDetails("Groceries", "12-1-2040", "700", "Expense"),
-    CardDetails("Macdonalds", "14-13-2040", "800", "Expense")
+    CardDetails("Macdonalds", "11-12-2020", "400", "Expense"),
+    CardDetails("Gas", "14-11-2020", "100", "Expense"),
+    CardDetails("Groceries", "18-1-2020", "700", "Expense"),
+    CardDetails("Month's Salary", "14-11-2020", "8000", "Income"),
+    CardDetails("Gam3eya", "18-1-2020", "2000", "Income"),
+    CardDetails("Ice-cream", "19-12-2020", "100", "Expense"),
+    CardDetails("Macdonalds", "19-12-2020", "800", "Expense")
   ];
-
   void addCard(CardDetails card) {
     cardList.add(card);
     notifyListeners();

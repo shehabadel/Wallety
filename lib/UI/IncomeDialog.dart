@@ -46,6 +46,7 @@ class IncomeDialog extends StatelessWidget {
                   ),
                 ),
                 TextField(
+                  //TODO add text validator
                   textInputAction: TextInputAction.done,
                   onSubmitted: (value) {
                     //setting controller and inputValue as the input value from the user in order to show
@@ -90,6 +91,12 @@ class IncomeDialog extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       FlatButton(
+                        shape: RoundedRectangleBorder(
+                            side: BorderSide(
+                                color: Colors.blue,
+                                width: 1,
+                                style: BorderStyle.solid),
+                            borderRadius: BorderRadius.circular(10)),
                         onPressed: () {
                           //Providing the textField controller's data into some
                           //temporary variables which are used in creating a new
