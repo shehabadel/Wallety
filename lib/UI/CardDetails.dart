@@ -3,15 +3,19 @@ import 'package:flutter/material.dart';
 
 class CardDetails extends StatelessWidget {
   String Test;
-  String assetName = 'assets/Expense.svg';
+  String cardType;
+  String assetName;
   String expenseDesc;
   String Date;
   String expenseValue;
 
-  CardDetails(String expenseDesc, String Date, String expenseValue) {
+  CardDetails(
+      String expenseDesc, String Date, String expenseValue, String cardType) {
     this.expenseDesc = expenseDesc;
     this.Date = Date;
     this.expenseValue = expenseValue;
+    this.cardType = cardType;
+    this.assetName = 'assets/images/$cardType.png';
   }
   @override
   Widget build(BuildContext context) {
@@ -31,7 +35,7 @@ class CardDetails extends StatelessWidget {
                 children: <Widget>[
                   Container(
                     padding: EdgeInsets.all(5.0),
-                    child: Image.asset('assets/images/Expense.png'),
+                    child: Image.asset(assetName),
                   ),
                   Text(
                     "$expenseDesc",

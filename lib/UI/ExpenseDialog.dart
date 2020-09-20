@@ -7,7 +7,7 @@ import 'package:wallety/constants.dart';
 import 'package:wallety/UI/wallety_screen.dart';
 import 'package:provider/provider.dart';
 
-class IncomeDialog extends StatelessWidget {
+class ExpenseDialog extends StatelessWidget {
   //In order to move to the next TextField
   FocusScopeNode _focusScopeNode = FocusScopeNode();
 
@@ -40,7 +40,7 @@ class IncomeDialog extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(right: 10.0),
                   child: Text(
-                    "Income",
+                    "Expense",
                     style: TextStyle(
                         fontSize: 20.0, color: Constants.primaryColor),
                   ),
@@ -56,14 +56,16 @@ class IncomeDialog extends StatelessWidget {
                     print(inputAmount);
                   },
                   controller: _AmountController,
-                  decoration: InputDecoration(hintText: "Enter income's value"),
+                  decoration:
+                      InputDecoration(hintText: "Enter expense's value"),
                   keyboardType: TextInputType.numberWithOptions(decimal: true),
                 ),
                 SizedBox(height: 5.0),
                 TextField(
                   controller: _DescController,
                   textInputAction: TextInputAction.done,
-                  decoration: InputDecoration(hintText: "Enter income's title"),
+                  decoration:
+                      InputDecoration(hintText: "Enter expense's title"),
                   onSubmitted: (Description) {
                     print(inputDesc);
                   },
@@ -82,7 +84,7 @@ class IncomeDialog extends StatelessWidget {
                           "${date.year}-${date.month}-${date.day}";
                     });
                   },
-                  decoration: InputDecoration(hintText: "Enter income's date"),
+                  decoration: InputDecoration(hintText: "Enter expense's date"),
                 )),
                 SizedBox(height: 35.0),
                 Row(
@@ -101,12 +103,12 @@ class IncomeDialog extends StatelessWidget {
 
                           //adding it to the Model Provider's list and incrementing
                           //the balance based on the input amount
-                          CardDetails incomeCard = new CardDetails(inputDesc,
-                              inputDate, inputAmount.toString(), "Income");
+                          CardDetails expenseCard = new CardDetails(inputDesc,
+                              inputDate, inputAmount.toString(), "Expense");
                           Provider.of<CardList>(context, listen: false)
-                              .addCard(incomeCard);
+                              .addCard(expenseCard);
                           Provider.of<CardList>(context, listen: false)
-                              .incrementValue(inputAmount);
+                              .decrementValue(inputAmount);
                           print(
                               "Value:$inputAmount#, Desc:$inputDesc*, Date:$inputDate@ ");
                           print(Provider.of<CardList>(context, listen: false)
