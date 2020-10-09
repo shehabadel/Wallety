@@ -29,6 +29,7 @@ class WalletyScreen extends StatelessWidget {
 
           //must be updated with the new changes in the cardList
           //must show the new incomes and expenses added, from the CardDetails widget
+
           SliverList(
               delegate: SliverChildBuilderDelegate((context, index) {
             return cardList.getCardList()[index];
