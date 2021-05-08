@@ -1,6 +1,6 @@
 # wallety
 
-A virtual wallet for tracking your income and expenses.
+A virtual wallet to track your income and expenses.
 
 ## Getting Started
 
