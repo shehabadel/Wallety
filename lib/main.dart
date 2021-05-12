@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wallety/Logic/CardList.dart';
-import 'package:wallety/UI/SplashScreen.dart';
-import 'package:wallety/UI/wallety_screen.dart';
+import 'package:wallety/UI/screens/SplashScreen.dart';
+import 'package:wallety/UI/screens/wallety_screen.dart';
 import 'package:wallety/Logic/CardList.dart';
 import 'constants.dart';
 
