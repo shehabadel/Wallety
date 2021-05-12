@@ -2,9 +2,9 @@ import 'package:fab_circular_menu/fab_circular_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:wallety/UI/components/ExpenseDialog.dart';
-import 'package:wallety/UI/components/flexiableAppBar.dart';
+import 'package:wallety/UI/components/FlexiableAppBar.dart';
 import 'package:wallety/Logic/CardList.dart';
-import 'package:wallety/UI/components/titleAppBar.dart';
+import 'package:wallety/UI/components/TitleAppBar.dart';
 import 'package:provider/provider.dart';
 import 'package:wallety/UI/components/IncomeDialog.dart';
 
@@ -20,7 +20,7 @@ class WalletyScreen extends StatelessWidget {
                     bottomLeft: Radius.circular(250.0),
                     bottomRight: Radius.circular(10.0))),
             centerTitle: true,
-            title: Center(child: new titleAppBar()),
+            title: Center(child: new TitleAppBar()),
             expandedHeight: 180.0,
             flexibleSpace:
                 FlexibleSpaceBar(background: new MyFlexiableAppBar()),
