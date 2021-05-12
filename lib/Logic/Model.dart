@@ -1,13 +1,25 @@
 import 'package:wallety/Logic/Transaction.dart';
+import 'package:flutter/foundation.dart';
 
-//TODO must retrieve transList, currentValue from sembast Database
 class Model {
-  List<Transaction> transList;
+  List<TransactionW> transList;
   double currentValue = 0;
 
-  void addTransaction(Transaction transaction) {}
-  void deleteTransaction() {}
-  void updateTransaction() {}
-  void incrementCV(double value) {}
-  void decrementCV(double value) {}
+  Model(List<TransactionW> translist) {
+    this.transList = transList;
+  }
+
+  void calculateCV() {
+    transList.forEach((transaction) {
+      if ((currentValue < transaction.transValue) &
+          (transaction.transType == TransactionType.Expense)) {
+        print("Can't be added");
+      }
+      if (transaction.transType == TransactionType.Income) {
+        currentValue += transaction.transValue;
+      } else if (transaction.transType == TransactionType.Expense) {
+        currentValue -= transaction.transValue;
+      }
+    });
+  }
 }

@@ -9,7 +9,7 @@ class SembastDB {
   DatabaseFactory dbFactory = databaseFactoryIo;
   Database _db;
   final store = intMapStoreFactory.store('transactions');
-
+  final cvStore = int
   static SembastDB _singleton = SembastDB._internal();
 
   SembastDB._internal();

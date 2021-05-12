@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:wallety/Data/Sembast_DB.dart';
 import 'package:wallety/Logic/CardList.dart';
+import 'package:wallety/Logic/Transaction.dart';
 import 'package:wallety/UI/components/CardDetails.dart';
 import 'package:wallety/constants.dart';
 import 'package:wallety/UI/screens/wallety_screen.dart';
@@ -14,8 +16,8 @@ class IncomeDialog extends StatelessWidget {
   TextEditingController _DateController = TextEditingController();
   TextEditingController _AmountController = TextEditingController();
   TextEditingController _DescController = TextEditingController();
+  DateTime selectedDate;
   //TODO Complete the Dialog implementation and logic
-  final DateTime selectedDate = DateTime.now();
   String inputDate = '';
   String inputDesc = '';
   double inputAmount = 0.0;
@@ -81,6 +83,8 @@ class IncomeDialog extends StatelessWidget {
                         .then((date) {
                       _DateController.text =
                           "${date.year}-${date.month}-${date.day}";
+                      selectedDate =
+                          new DateTime(date.year, date.month, date.day);
                     });
                   },
                   decoration: InputDecoration(hintText: "Enter income's date"),
@@ -105,20 +109,19 @@ class IncomeDialog extends StatelessWidget {
                           inputAmount = double.parse(_AmountController.text);
                           inputDesc = _DescController.text;
                           inputDate = _DateController.text;
+                          TransactionW transaction = TransactionW(
+                              transType: TransactionType.Income,
+                              transTitle: inputDesc,
+                              transValue: inputAmount,
+                              transDate: selectedDate);
+                          SembastDB db = SembastDB();
+                          db.addTransaction(transaction);
 
                           //adding it to the Model Provider's list and incrementing
                           //the balance based on the input amount
-                          CardDetails incomeCard = new CardDetails(inputDesc,
-                              inputDate, inputAmount.toString(), "Income");
-                          Provider.of<CardList>(context, listen: false)
-                              .addCard(incomeCard);
-                          Provider.of<CardList>(context, listen: false)
-                              .incrementValue(inputAmount);
+
                           print(
-                              "Value:$inputAmount#, Desc:$inputDesc*, Date:$inputDate@ ");
-                          print(Provider.of<CardList>(context, listen: false)
-                              .getCardList()
-                              .toString());
+                              "Value:$inputAmount#, Desc:$inputDesc*, Date:${selectedDate.toString()}@ ");
                           Navigator.pop(context);
                         },
                         child: Text(
@@ -137,3 +140,12 @@ class IncomeDialog extends StatelessWidget {
     );
   }
 }
+
+/*
+                          CardDetails incomeCard = new CardDetails(inputDesc,
+                              inputDate, inputAmount, "Income");
+                          Provider.of<CardList>(context, listen: false)
+                              .addCard(incomeCard);
+                          Provider.of<CardList>(context, listen: false)
+                              .incrementValue(inputAmount);
+                              */

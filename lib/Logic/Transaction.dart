@@ -7,7 +7,7 @@ class TransactionW {
   double transValue;
 
   TransactionW(
-      {String transType,
+      {TransactionType transType,
       String transTitle,
       String transDesc,
       DateTime transDate,

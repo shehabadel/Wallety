@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:wallety/Data/Sembast_DB.dart';
 import 'package:wallety/Logic/CardList.dart';
+import 'package:wallety/Logic/Transaction.dart';
 import 'package:wallety/UI/components/CardDetails.dart';
 import 'package:wallety/constants.dart';
 import 'package:wallety/UI/screens/wallety_screen.dart';
@@ -15,7 +17,7 @@ class ExpenseDialog extends StatelessWidget {
   TextEditingController _AmountController = TextEditingController();
   TextEditingController _DescController = TextEditingController();
   //TODO Complete the Dialog implementation and logic
-  final DateTime selectedDate = DateTime.now();
+  DateTime selectedDate;
   String inputDate = '';
   String inputDesc = '';
   double inputAmount = 0.0;
@@ -82,6 +84,8 @@ class ExpenseDialog extends StatelessWidget {
                         .then((date) {
                       _DateController.text =
                           "${date.year}-${date.month}-${date.day}";
+                      selectedDate =
+                          new DateTime(date.year, date.month, date.day);
                     });
                   },
                   decoration: InputDecoration(hintText: "Enter expense's date"),
@@ -107,19 +111,17 @@ class ExpenseDialog extends StatelessWidget {
                           inputDesc = _DescController.text;
                           inputDate = _DateController.text;
 
-                          //adding it to the Model Provider's list and incrementing
-                          //the balance based on the input amount
-                          CardDetails expenseCard = new CardDetails(inputDesc,
-                              inputDate, inputAmount.toString(), "Expense");
-                          Provider.of<CardList>(context, listen: false)
-                              .addCard(expenseCard);
-                          Provider.of<CardList>(context, listen: false)
-                              .decrementValue(inputAmount);
+                          TransactionW transaction = TransactionW(
+                              transType: TransactionType.Expense,
+                              transTitle: inputDesc,
+                              transValue: inputAmount,
+                              transDate: selectedDate);
+                          SembastDB db = SembastDB();
+                          db.addTransaction(transaction);
+
                           print(
                               "Value:$inputAmount#, Desc:$inputDesc*, Date:$inputDate@ ");
-                          print(Provider.of<CardList>(context, listen: false)
-                              .getCardList()
-                              .toString());
+
                           Navigator.pop(context);
                         },
                         child: Text(
@@ -138,3 +140,13 @@ class ExpenseDialog extends StatelessWidget {
     );
   }
 }
+
+
+/*
+CardDetails expenseCard = new CardDetails(inputDesc,
+                              inputDate, inputAmount.toString(), "Expense");
+                          Provider.of<CardList>(context, listen: false)
+                              .addCard(expenseCard);
+                          Provider.of<CardList>(context, listen: false)
+                              .decrementValue(inputAmount);
+                              */

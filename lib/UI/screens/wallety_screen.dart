@@ -8,7 +8,7 @@ import 'package:wallety/UI/components/TitleAppBar.dart';
 import 'package:provider/provider.dart';
 import 'package:wallety/UI/components/IncomeDialog.dart';
 
-class WalletyScreen extends StatelessWidget {
+class WalletyScreenS extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<CardList>(builder: (_, cardList, __) {
