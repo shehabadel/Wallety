@@ -1,4 +1,4 @@
-class Transaction {
+class TransactionW {
   int transID;
   TransactionType transType;
   String transTitle;
@@ -6,7 +6,7 @@ class Transaction {
   DateTime transDate;
   double transValue;
 
-  Transaction(
+  TransactionW(
       {String transType,
       String transTitle,
       String transDesc,
@@ -23,7 +23,7 @@ class Transaction {
     };
   }
 
-  Transaction.fromMap(Map<String, dynamic> map) {
+  TransactionW.fromMap(Map<String, dynamic> map) {
     transID = map['id'];
     transType = map['type'];
     transTitle = map['title'];
