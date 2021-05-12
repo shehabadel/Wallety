@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class titleAppBar extends StatelessWidget {
-  const titleAppBar();
+class TitleAppBar extends StatelessWidget {
+  const TitleAppBar();
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
