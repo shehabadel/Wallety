@@ -5,6 +5,7 @@ import 'package:wallety/Data/Sembast_DB.dart';
 import 'package:wallety/Logic/CardList.dart';
 import 'package:wallety/Logic/Transaction.dart';
 import 'package:wallety/UI/components/CardDetails.dart';
+import 'package:wallety/UI/screens/WalletyScreen.dart';
 import 'package:wallety/constants.dart';
 import 'package:wallety/UI/screens/wallety_screen.dart';
 import 'package:provider/provider.dart';
@@ -119,10 +120,13 @@ class ExpenseDialog extends StatelessWidget {
                           SembastDB db = SembastDB();
                           db.addTransaction(transaction);
 
+                          print(transaction.toString());
                           print(
                               "Value:$inputAmount#, Desc:$inputDesc*, Date:$inputDate@ ");
 
                           Navigator.pop(context);
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => WalletyScreen()));
                         },
                         child: Text(
                           "Add",

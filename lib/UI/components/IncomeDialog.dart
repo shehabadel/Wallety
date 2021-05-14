@@ -8,6 +8,8 @@ import 'package:wallety/UI/components/CardDetails.dart';
 import 'package:wallety/constants.dart';
 import 'package:wallety/UI/screens/wallety_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:wallety/UI/screens/WalletyScreen.dart';
+
 
 class IncomeDialog extends StatelessWidget {
   //In order to move to the next TextField
@@ -123,6 +125,8 @@ class IncomeDialog extends StatelessWidget {
                           print(
                               "Value:$inputAmount#, Desc:$inputDesc*, Date:${selectedDate.toString()}@ ");
                           Navigator.pop(context);
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => WalletyScreen()));
                         },
                         child: Text(
                           "Add",

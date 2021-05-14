@@ -6,13 +6,13 @@ import 'package:wallety/Logic/Transaction.dart';
 class CardDetails extends StatelessWidget {
   TransactionType cardType;
   String assetName;
-  String expenseDesc;
+  String transDesc;
   DateTime date;
   double expenseValue;
 
-  CardDetails(String expenseDesc, DateTime date, double expenseValue,
+  CardDetails(String transDesc, DateTime date, double expenseValue,
       TransactionType cardType) {
-    this.expenseDesc = expenseDesc;
+    this.transDesc = transDesc;
     this.date = date;
     this.expenseValue = expenseValue;
     this.cardType = cardType;
@@ -40,7 +40,7 @@ class CardDetails extends StatelessWidget {
                     child: Image.asset(assetName),
                   ),
                   Text(
-                    "$expenseDesc",
+                    "$transDesc",
                     style: TextStyle(fontSize: 20.0),
                   ),
                   Column(

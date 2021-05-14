@@ -3,6 +3,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
 import 'package:sembast/sembast.dart';
 import 'package:sembast/sembast_io.dart';
+import 'package:flutter/foundation.dart';
+
 import 'package:wallety/Logic/Transaction.dart';
 
 class SembastDB {
@@ -10,7 +12,6 @@ class SembastDB {
   Database _db;
   final store = intMapStoreFactory.store('transactions');
   static SembastDB _singleton = SembastDB._internal();
-
   SembastDB._internal();
 
   factory SembastDB() {
@@ -62,4 +63,40 @@ class SembastDB {
   Future deleteAll() async {
     await store.delete(_db);
   }
+
+  //Provider functions
+
+ /*
+  Future<int> createTransaction(TransactionW transaction) async {
+
+    int id = await store.add(_db, transaction.toMap());
+    _transactionsList = await getTransactionsList();
+    return id;
+  }
+
+  Future<List<TransactionW>> getTransactionsList() async {
+    await init();
+
+    final finder = Finder(sortOrders: [SortOrder('date')]);
+    final snapshot = await store.find(_db, finder: finder);
+    List<TransactionW> transactions = snapshot.map((item) {
+      final transaction = TransactionW.fromMap(item.value);
+      transaction.transID = item.key;
+      return transaction;
+    }).toList();
+    _transactionsList = transactions;
+
+    notifyListeners();
+
+    return transactions;
+  }
+
+  List<TransactionW> get transactionsListGetter {
+    return _transactionsList;
+  }
+  int get transactionsCount {
+    return _transactionsList.length;
+  }
+
+  */
 }

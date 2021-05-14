@@ -27,7 +27,7 @@ class MyFlexiableAppBar extends StatelessWidget {
             Container(
                 child: Consumer<CardList>(builder: (context, cardList, child) {
               //updates the Balance with the current balance
-              return Text("${cardList.getCurrentValue()}",
+              return Text("0.0}",
                   style: TextStyle(
                       color: Colors.amber,
                       fontSize: 30.0,

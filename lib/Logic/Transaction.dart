@@ -12,6 +12,7 @@ class TransactionW {
       String transDesc,
       DateTime transDate,
       double transValue});
+
   Map<String, dynamic> toMap() {
     return {
       'id': transID,

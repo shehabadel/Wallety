@@ -19,10 +19,35 @@ class WalletyScreen extends StatefulWidget {
 
 class _WalletyScreenState extends State<WalletyScreen> {
   SembastDB db;
-
+  SliverList newListSliver;
+  void getTransactionCards()
+  {
+    FutureBuilder(future: getTransactions(), builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot){
+      if(snapshot.hasData)
+        {
+          List<TransactionW> transactions = snapshot.data;
+          newListSliver = new SliverList(
+              delegate: SliverChildBuilderDelegate((context, index) {
+                return CardDetails(
+                    transactions[index].transDesc,
+                    transactions[index].transDate,
+                    transactions[index].transValue,
+                    transactions[index].transType);
+              }, childCount: transactions.length));
+        }
+      else
+        {
+          newListSliver =  new SliverList(
+              delegate: SliverChildBuilderDelegate((context, index) {
+                return Container(child:Text("Empty for now"));
+              }, childCount: 0));
+        }
+    });
+  }
   @override
   void initState() {
     db = SembastDB();
+    getTransactionCards();
     super.initState();
   }
 
@@ -41,21 +66,7 @@ class _WalletyScreenState extends State<WalletyScreen> {
           flexibleSpace: FlexibleSpaceBar(background: new MyFlexiableAppBar()),
           pinned: true,
         ),
-        FutureBuilder(
-            future: getTransactions(),
-            builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-              if (snapshot.hasData) {
-                List<TransactionW> transactions = snapshot.data;
-                return SliverList(
-                    delegate: SliverChildBuilderDelegate((context, index) {
-                  return CardDetails(
-                      transactions[index].transDesc,
-                      transactions[index].transDate,
-                      transactions[index].transValue,
-                      transactions[index].transType);
-                }, childCount: transactions.length));
-              }
-            })
+        newListSliver,
         //must be updated with the new changes in the cardList
         //must show the new incomes and expenses added, from the CardDetails widget
       ]),
