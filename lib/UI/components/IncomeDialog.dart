@@ -140,12 +140,3 @@ class IncomeDialog extends StatelessWidget {
     );
   }
 }
-
-/*
-                          CardDetails incomeCard = new CardDetails(inputDesc,
-                              inputDate, inputAmount, "Income");
-                          Provider.of<CardList>(context, listen: false)
-                              .addCard(incomeCard);
-                          Provider.of<CardList>(context, listen: false)
-                              .incrementValue(inputAmount);
-                              */

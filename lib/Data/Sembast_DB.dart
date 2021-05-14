@@ -9,7 +9,7 @@ class SembastDB {
   DatabaseFactory dbFactory = databaseFactoryIo;
   Database _db;
   final store = intMapStoreFactory.store('transactions');
-  final cvStore = int
+  final cvStore = intMapStoreFactory.store('currentValue');
   static SembastDB _singleton = SembastDB._internal();
 
   SembastDB._internal();
@@ -22,6 +22,7 @@ class SembastDB {
     if (_db == null) {
       _db = await _openDB();
     }
+    return _db;
   }
 
   Future _openDB() async {
@@ -52,6 +53,11 @@ class SembastDB {
   Future deleteTransaction(TransactionW transaction) async {
     final finder = Finder(filter: Filter.byKey(transaction.transID));
     await store.delete(_db, finder: finder);
+  }
+
+  Future updateTransaction(TransactionW transaction) async {
+    final finder = Finder(filter: Filter.byKey(transaction.transID));
+    await store.update(_db, transaction.toMap(), finder: finder);
   }
 
   Future deleteAll() async {

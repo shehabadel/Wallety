@@ -1,25 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:wallety/Logic/Transaction.dart';
 
 class CardDetails extends StatelessWidget {
-  String cardType;
+  TransactionType cardType;
   String assetName;
   String expenseDesc;
-  String date;
+  DateTime date;
   double expenseValue;
 
-  CardDetails(
-      String expenseDesc, String date, double expenseValue, String cardType) {
+  CardDetails(String expenseDesc, DateTime date, double expenseValue,
+      TransactionType cardType) {
     this.expenseDesc = expenseDesc;
     this.date = date;
     this.expenseValue = expenseValue;
     this.cardType = cardType;
     this.assetName = 'assets/images/$cardType.png';
-  }
-
-  String toStringS() {
-    return 'CardDetails(cardType: $cardType, assetName: $assetName, expenseDesc: $expenseDesc, date: $date, expenseValue: $expenseValue)';
   }
 
   @override
@@ -53,7 +50,8 @@ class CardDetails extends StatelessWidget {
                         "$expenseValue EGP",
                         style: TextStyle(fontSize: 15.0),
                       ),
-                      Text("$date", style: TextStyle(fontSize: 15.0))
+                      Text("${date.year}-${date.month}-${date.day}",
+                          style: TextStyle(fontSize: 15.0))
                     ],
                   )
                 ],
