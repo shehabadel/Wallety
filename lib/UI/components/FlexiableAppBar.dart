@@ -15,27 +15,19 @@ class MyFlexiableAppBar extends StatelessWidget {
       padding: EdgeInsets.only(top: 20.0),
       margin: EdgeInsets.only(top: 50.0),
       child: Center(
-        child: Column(
-          children: <Widget>[
-            Container(
-              child: Text(
-                "Balance",
-                style: TextStyle(
-                    color: Colors.white, fontSize: 50.0, fontFamily: 'Touche'),
-              ),
-            ),
-            Container(
-                child: Consumer<CardList>(builder: (context, cardList, child) {
-              //updates the Balance with the current balance
-              return Text("0.0}",
-                  style: TextStyle(
-                      color: Colors.amber,
-                      fontSize: 30.0,
-                      fontFamily: 'Touche'));
-            }))
-          ],
+          child: Column(children: <Widget>[
+        Container(
+          child: Text(
+            "Balance",
+            style: TextStyle(
+                color: Colors.white, fontSize: 50.0, fontFamily: 'Touche'),
+          ),
         ),
-      ),
+        Container(
+            child: Text("0.0}",
+                style: TextStyle(
+                    color: Colors.amber, fontSize: 30.0, fontFamily: 'Touche')))
+      ])),
     );
   }
 }

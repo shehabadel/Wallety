@@ -1,4 +1,4 @@
-import 'package:fab_circular_menu/fab_circular_menu.dart';
+/*import 'package:fab_circular_menu/fab_circular_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:wallety/Data/Sembast_DB.dart';
@@ -13,7 +13,7 @@ import 'package:wallety/UI/components/IncomeDialog.dart';
 class WalletyScreenS extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Consumer<SembastDB>(builder: (_, transactionList, __) {
+    return Consumer<CardList>(builder: (_, transactionList, __) {
       return Scaffold(
         body: CustomScrollView(slivers: <Widget>[
           SliverAppBar(
@@ -90,3 +90,4 @@ class WalletyScreenS extends StatelessWidget {
     });
   }
 }
+*/

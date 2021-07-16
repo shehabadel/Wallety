@@ -19,42 +19,17 @@ class WalletyScreen extends StatefulWidget {
 
 class _WalletyScreenState extends State<WalletyScreen> {
   SembastDB db;
-  SliverList newListSliver;
-  void getTransactionCards()
-  {
-    FutureBuilder(future: getTransactions(), builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot){
-      if(snapshot.hasData)
-        {
-          List<TransactionW> transactions = snapshot.data;
-          newListSliver = new SliverList(
-              delegate: SliverChildBuilderDelegate((context, index) {
-                return CardDetails(
-                    transactions[index].transDesc,
-                    transactions[index].transDate,
-                    transactions[index].transValue,
-                    transactions[index].transType);
-              }, childCount: transactions.length));
-        }
-      else
-        {
-          newListSliver =  new SliverList(
-              delegate: SliverChildBuilderDelegate((context, index) {
-                return Container(child:Text("Empty for now"));
-              }, childCount: 0));
-        }
-    });
-  }
+
   @override
   void initState() {
     db = SembastDB();
-    getTransactionCards();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(slivers: [
+      body: CustomScrollView(slivers: <Widget>[
         SliverAppBar(
           shape: ContinuousRectangleBorder(
               borderRadius: BorderRadius.only(
@@ -66,9 +41,10 @@ class _WalletyScreenState extends State<WalletyScreen> {
           flexibleSpace: FlexibleSpaceBar(background: new MyFlexiableAppBar()),
           pinned: true,
         ),
-        newListSliver,
-        //must be updated with the new changes in the cardList
-        //must show the new incomes and expenses added, from the CardDetails widget
+        SliverList(
+            delegate: SliverChildListDelegate([
+          Container(child: Text("Hello")),
+        ]))
       ]),
       floatingActionButton: FabCircularMenu(
         fabOpenIcon: Icon(
@@ -114,7 +90,8 @@ class _WalletyScreenState extends State<WalletyScreen> {
               ),
               iconSize: 50.0,
               onPressed: () {
-                Provider.of<CardList>(context, listen: false).reset();
+                db.deleteAll();
+                print("reset");
               })
         ],
       ),
@@ -134,6 +111,24 @@ SliverList(
         }, childCount: cardList.getCardList().length))
 */
 
+
+  
+
+
+
+  /*
+  SliverList(delegate: SliverChildBuilderDelegate((context, index){
+              return Container(
+                child: FutureBuilder(future: getTransactions(), builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot)
+                {}
+                )
+              );
+            }))
+            */
+
+            // build fixed items outside of the FutureBuilder for efficiency
+
+
 /*SliverList cardsSliverList;
   FutureBuilder<List<TransactionW>> getSliver() {
     return FutureBuilder(
@@ -151,6 +146,55 @@ SliverList(
                     childCount: transactions.length));
           }
         });
+  }*/
+
+  /*
+SliverList newListSliver;
+  void getTransactionCards() {
+    FutureBuilder(
+        future: getTransactions(),
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if (snapshot.hasData) {
+            List<TransactionW> transactions = snapshot.data;
+            newListSliver = new SliverList(
+                delegate: SliverChildBuilderDelegate((context, index) {
+              return CardDetails(
+                  transactions[index].transDesc,
+                  transactions[index].transDate,
+                  transactions[index].transValue,
+                  transactions[index].transType);
+            }, childCount: transactions.length));
+          } else {
+            newListSliver = new SliverList(
+                delegate: SliverChildBuilderDelegate((context, index) {
+              return Container(child: Text("Empty for now"));
+            }, childCount: 0));
+          }
+        });
   }
   */
-  
+  /*
+  FutureBuilder(
+          future: getTransactions(),
+          builder: (context, snapshot) {
+            Widget cardsSliverList;
+            if (snapshot.hasData) {
+              List<TransactionW> transactions = snapshot.data;
+              cardsSliverList = SliverList(
+                  delegate: SliverChildBuilderDelegate((context, index) {
+                return CardDetails(
+                    transactions[index].transDesc,
+                    transactions[index].transDate,
+                    transactions[index].transValue,
+                    transactions[index].transType);
+              }, childCount: transactions.length));
+            } else {
+              cardsSliverList = SliverToBoxAdapter(
+                child: Center(
+                    child: Container(
+                        height: 10.0,
+                        width: 10.0,
+                        child: CircularProgressIndicator())),
+              );
+            }
+  */

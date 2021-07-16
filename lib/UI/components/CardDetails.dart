@@ -4,19 +4,17 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:wallety/Logic/Transaction.dart';
 
 class CardDetails extends StatelessWidget {
-  TransactionType cardType;
-  String assetName;
-  String transDesc;
-  DateTime date;
-  double expenseValue;
+  TransactionW transaction;
 
-  CardDetails(String transDesc, DateTime date, double expenseValue,
-      TransactionType cardType) {
+  CardDetails(TransactionW transaction) {
+    this.transaction = transaction;
+    /*
     this.transDesc = transDesc;
     this.date = date;
     this.expenseValue = expenseValue;
     this.cardType = cardType;
     this.assetName = 'assets/images/$cardType.png';
+  */
   }
 
   @override
@@ -37,20 +35,22 @@ class CardDetails extends StatelessWidget {
                 children: <Widget>[
                   Container(
                     padding: EdgeInsets.all(5.0),
-                    child: Image.asset(assetName),
+                    child: Image.asset(
+                        'assets/images/${transaction.transType}.png'),
                   ),
                   Text(
-                    "$transDesc",
+                    "${transaction.transDesc}",
                     style: TextStyle(fontSize: 20.0),
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        "$expenseValue EGP",
+                        "${transaction.transValue} EGP",
                         style: TextStyle(fontSize: 15.0),
                       ),
-                      Text("${date.year}-${date.month}-${date.day}",
+                      Text(
+                          "${transaction.transDate.year}-${transaction.transDate.month}-${transaction.transDate.day}",
                           style: TextStyle(fontSize: 15.0))
                     ],
                   )
