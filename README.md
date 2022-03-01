@@ -1,4 +1,4 @@
-# wallety
+# wallety (Discontinued)
 
 A virtual wallet to track your income and expenses.
 
